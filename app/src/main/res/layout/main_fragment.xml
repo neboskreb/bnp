@@ -1,20 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.impl.MainFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MainFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable name="viewModel" type="john.pazekha.bnp.view.impl.MainViewModel"/>
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.impl.MainFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/play_with"
+                app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/radioCross"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:id="@+id/radioCross"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/play_with_x" />
+
+                <RadioButton
+                    android:id="@+id/radioDonut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/play_with_o" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_game"
+                app:layout_constraintEnd_toStartOf="@+id/stop"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stop_game"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:columnCount="3"
+            app:layout_constraintTop_toBottomOf="@+id/controls"
+            app:rowCount="3">
+
+            <Button
+                android:id="@+id/row0col0"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row0col1"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row0col2"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row1col0"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row1col1"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row1col2"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row2col0"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row2col1"
+                app:layout_gravity="left|top"
+                />
+
+            <Button
+                android:id="@+id/row2col2"
+                app:layout_gravity="left|top"
+                />
+
+
+        </androidx.gridlayout.widget.GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
