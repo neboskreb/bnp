@@ -101,6 +101,7 @@ class MainActivityTest {
 
         /* ********  THEN ********* */
         getInstrumentation().waitForIdleSync()
+        Thread.sleep(100)
 
         onView(withId(R.id.start)).check(matches(isEnabled()))
         onView(withId(R.id.stop)).check(matches(not(isEnabled())))
@@ -131,6 +132,7 @@ class MainActivityTest {
 
         /* ********  THEN ********* */
         getInstrumentation().waitForIdleSync()
+        Thread.sleep(100)
 
         onView(withId(R.id.start)).check(matches(not(isEnabled())))
         onView(withId(R.id.stop)).check(matches(isEnabled()))
@@ -151,6 +153,7 @@ class MainActivityTest {
 
         /* ********  THEN ********* */
         getInstrumentation().waitForIdleSync()
+        Thread.sleep(100)
 
         onView(withId(R.id.start)).check(matches(isEnabled()))
         onView(withId(R.id.stop)).check(matches(not(isEnabled())))
@@ -170,13 +173,14 @@ class MainActivityTest {
         val view = getView()
 
         /* ********  WHEN ********* */
-        activity.runOnUiThread({
+        activity.runOnUiThread {
             view.setState(IN_GAME)
             view.setSituation(mockSituation)
-        })
+        }
 
         /* ********  THEN ********* */
         getInstrumentation().waitForIdleSync()
+        Thread.sleep(100)
 
         /* ********  THEN ********* */
         onView(withId(R.id.row0col0)).check(matches(isEnabled()))

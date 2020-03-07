@@ -34,21 +34,25 @@
                 android:id="@+id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkedButton="@id/radioCross"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                >
 
                 <RadioButton
                     android:id="@+id/radioCross"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.radioEnabled}"
+                    android:checked="@={viewModel.userSymbolCross}"
                     android:text="@string/play_with_x" />
 
                 <RadioButton
                     android:id="@+id/radioDonut"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.radioEnabled}"
+                    android:checked="@={viewModel.userSymbolDonut}"
                     android:text="@string/play_with_o" />
             </RadioGroup>
 
@@ -58,7 +62,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/start_game"
                 app:layout_constraintEnd_toStartOf="@+id/stop"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:enabled="@{viewModel.startEnabled}"
+                android:onClick="@{viewModel::onClickStart}"
+                />
 
             <Button
                 android:id="@+id/stop"
@@ -66,7 +73,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/stop_game"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:enabled="@{viewModel.stopEnabled}"
+                android:onClick="@{viewModel::onClickStop}"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -80,46 +90,73 @@
             <Button
                 android:id="@+id/row0col0"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[0][0]}"
+                android:enabled="@{viewModel.moveEnabled[0][0]}"
+                android:onClick="@{() -> viewModel.onClickMove(0, 0)}"
                 />
 
             <Button
                 android:id="@+id/row0col1"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[0][1]}"
+                android:enabled="@{viewModel.moveEnabled[0][1]}"
+                android:onClick="@{() -> viewModel.onClickMove(0, 1)}"
                 />
 
             <Button
                 android:id="@+id/row0col2"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[0][2]}"
+                android:enabled="@{viewModel.moveEnabled[0][2]}"
+                android:onClick="@{() -> viewModel.onClickMove(0, 2)}"
                 />
 
             <Button
                 android:id="@+id/row1col0"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[1][0]}"
+                android:enabled="@{viewModel.moveEnabled[1][0]}"
+                android:onClick="@{() -> viewModel.onClickMove(1, 0)}"
                 />
 
             <Button
                 android:id="@+id/row1col1"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[1][1]}"
+                android:enabled="@{viewModel.moveEnabled[1][1]}"
+                android:onClick="@{() -> viewModel.onClickMove(1, 1)}"
                 />
 
             <Button
                 android:id="@+id/row1col2"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[1][2]}"
+                android:enabled="@{viewModel.moveEnabled[1][2]}"
+                android:onClick="@{() -> viewModel.onClickMove(1, 2)}"
                 />
 
             <Button
                 android:id="@+id/row2col0"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[2][0]}"
+                android:enabled="@{viewModel.moveEnabled[2][0]}"
+                android:onClick="@{() -> viewModel.onClickMove(2, 0)}"
                 />
 
             <Button
                 android:id="@+id/row2col1"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[2][1]}"
+                android:enabled="@{viewModel.moveEnabled[2][1]}"
+                android:onClick="@{() -> viewModel.onClickMove(2, 1)}"
                 />
 
             <Button
                 android:id="@+id/row2col2"
                 app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[2][2]}"
+                android:enabled="@{viewModel.moveEnabled[2][2]}"
+                android:onClick="@{() -> viewModel.onClickMove(2, 2)}"
                 />
 
 
