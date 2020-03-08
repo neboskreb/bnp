@@ -3,7 +3,9 @@ package john.pazekha.bnp
 import john.pazekha.bnp.controller.IController
 import john.pazekha.bnp.controller.impl.ControllerImpl
 import john.pazekha.bnp.logic.IGameLogic
+import john.pazekha.bnp.logic.impl.GameAIHelper
 import john.pazekha.bnp.logic.impl.GameLogicImpl
+import john.pazekha.bnp.logic.impl.GameOverHelper
 
 object ClassFactory {
     private var logic: IGameLogic? = null
@@ -30,7 +32,7 @@ object ClassFactory {
     @Synchronized
     fun createGameLogic(): IGameLogic {
         if (logic == null) {
-            logic = GameLogicImpl()
+            logic = GameLogicImpl(GameOverHelper(), GameAIHelper())
         }
         return logic as IGameLogic
     }
