@@ -6,8 +6,8 @@ import junitparams.converters.Converter
 import junitparams.converters.Param
 
 
-class BoardConverter: Converter<Param, Array<SYMBOL>> {
-    override fun convert(param: Any?): Array<SYMBOL> {
+class BoardConverter: Converter<Param, Array<Array<SYMBOL>>> {
+    override fun convert(param: Any?): Array<Array<SYMBOL>> {
         var line = param!! as String
         line = line.replace(" ", "")
         if (line.length != 9) {
@@ -19,7 +19,7 @@ class BoardConverter: Converter<Param, Array<SYMBOL>> {
             result[pos] = toSymbol(c)
         }
 
-        return result
+        return asBoard(result)
     }
 
     private fun toSymbol(c: Char): SYMBOL {
@@ -29,6 +29,15 @@ class BoardConverter: Converter<Param, Array<SYMBOL>> {
             '.' -> SYMBOL.BLANK
             else -> throw IllegalArgumentException("Expected 'X' or 'O' or '.' but found this: [$c]")
         }
+    }
+
+    private fun asBoard(cells: Array<SYMBOL>): Array<Array<SYMBOL>> {
+        if (cells.size != 9) throw IllegalArgumentException()
+
+        return arrayOf(
+            arrayOf(cells[0], cells[1], cells[2]),
+            arrayOf(cells[3], cells[4], cells[5]),
+            arrayOf(cells[6], cells[7], cells[8]))
     }
 
     override fun initialize(annotation: Param?) {

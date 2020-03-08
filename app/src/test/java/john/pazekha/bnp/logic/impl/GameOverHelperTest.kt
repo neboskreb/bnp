@@ -1,7 +1,6 @@
 package john.pazekha.bnp.logic.impl
 
 import john.pazekha.bnp.model.SYMBOL
-import john.pazekha.bnp.model.SYMBOL.*
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import junitparams.converters.Param
@@ -16,8 +15,6 @@ import org.junit.runner.RunWith
 class GameOverHelperTest {
 
     private lateinit var gameOverHelper: GameOverHelper
-
-    private val gameBoard: Array<Array<SYMBOL>> = Array(3) {Array(3) { BLANK } }
 
 
     @Before
@@ -66,26 +63,15 @@ class GameOverHelperTest {
     )
     @Test
     fun checkGameOver(
-        @Param(converter = BoardConverter::class) board: Array<SYMBOL>,
+        @Param(converter = BoardConverter::class) board: Array<Array<SYMBOL>>,
         expectedGameOver: Boolean,
         expectedWinner: SYMBOL
     ) {
-        /* ********  GIVEN ********* */
-        setBoard(board)
-
         /* ********  WHEN ********* */
-        val result = gameOverHelper.checkGameOver(gameBoard)
+        val result = gameOverHelper.checkGameOver(board)
 
         /* ********  THEN ********* */
         assertEquals(expectedGameOver, result.isGameOver)
         assertEquals(expectedWinner,   result.winner)
-    }
-
-    private fun setBoard(cells: Array<SYMBOL>) {
-        if (cells.size != 9) throw IllegalArgumentException()
-
-        gameBoard[0][0] = cells[0]; gameBoard[1][0] = cells[1]; gameBoard[2][0] = cells[2]
-        gameBoard[0][1] = cells[3]; gameBoard[1][1] = cells[4]; gameBoard[2][1] = cells[5]
-        gameBoard[0][2] = cells[6]; gameBoard[1][2] = cells[7]; gameBoard[2][2] = cells[8]
     }
 }
