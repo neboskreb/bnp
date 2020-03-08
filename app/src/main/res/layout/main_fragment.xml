@@ -7,6 +7,10 @@
         <variable name="viewModel" type="john.pazekha.bnp.view.impl.MainViewModel"/>
     </data>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -81,6 +85,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/gridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:columnCount="3"
@@ -89,77 +94,104 @@
 
             <Button
                 android:id="@+id/row0col0"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[0][0]}"
                 android:enabled="@{viewModel.moveEnabled[0][0]}"
                 android:onClick="@{() -> viewModel.onClickMove(0, 0)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[0][0]}" />
 
             <Button
                 android:id="@+id/row0col1"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[0][1]}"
                 android:enabled="@{viewModel.moveEnabled[0][1]}"
                 android:onClick="@{() -> viewModel.onClickMove(0, 1)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[0][1]}" />
 
             <Button
                 android:id="@+id/row0col2"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[0][2]}"
                 android:enabled="@{viewModel.moveEnabled[0][2]}"
                 android:onClick="@{() -> viewModel.onClickMove(0, 2)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[0][2]}" />
 
             <Button
                 android:id="@+id/row1col0"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[1][0]}"
                 android:enabled="@{viewModel.moveEnabled[1][0]}"
                 android:onClick="@{() -> viewModel.onClickMove(1, 0)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[1][0]}" />
 
             <Button
                 android:id="@+id/row1col1"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[1][1]}"
                 android:enabled="@{viewModel.moveEnabled[1][1]}"
                 android:onClick="@{() -> viewModel.onClickMove(1, 1)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[1][1]}" />
 
             <Button
                 android:id="@+id/row1col2"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[1][2]}"
                 android:enabled="@{viewModel.moveEnabled[1][2]}"
                 android:onClick="@{() -> viewModel.onClickMove(1, 2)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[1][2]}" />
 
             <Button
                 android:id="@+id/row2col0"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[2][0]}"
                 android:enabled="@{viewModel.moveEnabled[2][0]}"
                 android:onClick="@{() -> viewModel.onClickMove(2, 0)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[2][0]}" />
 
             <Button
                 android:id="@+id/row2col1"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[2][1]}"
                 android:enabled="@{viewModel.moveEnabled[2][1]}"
                 android:onClick="@{() -> viewModel.onClickMove(2, 1)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[2][1]}" />
 
             <Button
                 android:id="@+id/row2col2"
-                app:layout_gravity="left|top"
-                app:symbol="@{viewModel.moveSymbol[2][2]}"
                 android:enabled="@{viewModel.moveEnabled[2][2]}"
                 android:onClick="@{() -> viewModel.onClickMove(2, 2)}"
-                />
+                app:layout_gravity="left|top"
+                app:symbol="@{viewModel.moveSymbol[2][2]}" />
 
 
         </androidx.gridlayout.widget.GridLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/game_over"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:visibility="@{viewModel.showGameResult}"
+            >
+
+            <TextView
+                android:id="@+id/game_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/computer_wins"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:winner="@{viewModel.winner}"
+                />
+
+            <Button
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/ok"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/game_result"
+                android:onClick="@{viewModel::dismissGameResult}"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 </layout>

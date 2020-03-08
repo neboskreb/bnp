@@ -21,6 +21,9 @@ class MainViewModel : IView, ViewModel() {
     val moveEnabled = Array(3) { Array(3) { MutableLiveData(true) } }
     val moveSymbol  = Array(3) { Array(3) { MutableLiveData(BLANK) } }
 
+    val showGameResult = MutableLiveData(false)
+    val winner = MutableLiveData(WINNER.DRAW)
+
 
     override fun setController(controller: IController) {
         this.controller = controller
@@ -81,7 +84,8 @@ class MainViewModel : IView, ViewModel() {
     }
 
     override fun setGameResult(result: WINNER) {
-        TODO("Not yet implemented")
+        showGameResult.value = true
+        winner.value = result
     }
 
     fun onClickStart(view: View) {
@@ -90,6 +94,10 @@ class MainViewModel : IView, ViewModel() {
 
     fun onClickStop(view: View) {
         controller.onStopGame()
+    }
+
+    fun dismissGameResult(view: View) {
+        showGameResult.value = false
     }
 
     fun onClickMove(row: Int, col: Int) {

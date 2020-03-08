@@ -5,4 +5,8 @@
     <string name="play_with_o">O</string>
     <string name="start_game">Start</string>
     <string name="stop_game">Stop</string>
+    <string name="computer_wins">Computer wins</string>
+    <string name="user_wins">You win</string>
+    <string name="game_draw">Game draw</string>
+    <string name="ok">OK</string>
 </resources>

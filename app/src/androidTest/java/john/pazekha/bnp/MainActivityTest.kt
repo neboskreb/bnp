@@ -16,6 +16,7 @@ import john.pazekha.bnp.controller.IController.STATE.*
 import john.pazekha.bnp.model.Position
 import john.pazekha.bnp.model.SYMBOL
 import john.pazekha.bnp.model.Situation
+import john.pazekha.bnp.model.WINNER
 import john.pazekha.bnp.view.IView
 import john.pazekha.bnp.view.impl.MainActivity
 import org.hamcrest.CoreMatchers.not
@@ -194,5 +195,25 @@ class MainActivityTest {
         onView(withId(R.id.row2col1)).check(matches(not(isEnabled()))) // Donut
         onView(withId(R.id.row2col1)).check(matches(withText("O")))    // Donut
         onView(withId(R.id.row2col2)).check(matches(isEnabled()))
+    }
+
+    @Test
+    fun testGameOver() {
+        /* ********  GIVEN ********* */
+        val view = getView()
+
+        /* ********  WHEN ********* */
+        activity.runOnUiThread {
+            view.setState(GAME_OVER)
+            view.setGameResult(WINNER.PLAYER)
+        }
+
+        /* ********  THEN ********* */
+        getInstrumentation().waitForIdleSync()
+        Thread.sleep(100)
+
+        /* ********  THEN ********* */
+        onView(withId(R.id.game_over)).check(matches(isDisplayed()))
+        onView(withId(R.id.game_result)).check(matches(withText("You win")))
     }
 }
